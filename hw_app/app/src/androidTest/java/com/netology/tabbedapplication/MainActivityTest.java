@@ -39,25 +39,27 @@ public class MainActivityTest {
     public void mainActivityTest() {
         String page1Text = "Page: 1";
         String page2Text = "Page: 2";
+        String tab1Text = "Tab 1";
+        String tab2Text = "Tab 2";
         ViewInteraction linearLayout = onView(
-                allOf(withContentDescription("Tab 1"),
+                allOf(withContentDescription(tab1Text),
                         withParent(withParent(withId(R.id.tabs))),
                         isDisplayed()));
         linearLayout.check(matches(isDisplayed()));
 
         ViewInteraction linearLayout2 = onView(
-                allOf(withContentDescription("Tab 2"),
+                allOf(withContentDescription(tab2Text),
                         withParent(withParent(withId(R.id.tabs))),
                         isDisplayed()));
         linearLayout2.check(matches(isDisplayed()));
 
         ViewInteraction textView = onView(
-                allOf(withId(R.id.section_label), withText(page1Text),
-                        isDisplayed()));
+                allOf(withId(R.id.section_label), withText(page1Text)));
+        textView.check(matches(isDisplayed()));
         textView.check(matches(withText(page1Text)));
 
         ViewInteraction tabView = onView(
-                allOf(withContentDescription("Tab 2"),
+                allOf(withContentDescription(tab2Text),
                         childAtPosition(
                                 childAtPosition(
                                         withId(R.id.tabs),
@@ -67,8 +69,8 @@ public class MainActivityTest {
         tabView.perform(click());
 
         ViewInteraction textView2 = onView(
-                allOf(withId(R.id.section_label), withText(page2Text),
-                        isDisplayed()));
+                allOf(withId(R.id.section_label), withText(page2Text)));
+        textView2.check(matches(isDisplayed()));
         textView2.check(matches(withText(page2Text)));
     }
 
